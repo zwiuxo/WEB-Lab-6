@@ -1,12 +1,23 @@
 version: '3.8'
 services:
+  web:
+    image: nginx:1.27-alpine
+    container_name: lab6_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./www:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - php
+    networks:
+      - default_network
+
   php:
     build: .
     container_name: lab6_php
     volumes:
       - ./www:/var/www/html
-    ports:
-      - "8080:80"
     depends_on:
       - redis
       - elasticsearch
@@ -38,7 +49,6 @@ services:
     container_name: lab6_clickhouse
     ports:
       - "8123:8123"
-      - "9000:9000"
     networks:
       - default_network
 
