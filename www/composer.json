@@ -1,6 +1,9 @@
 {
   "require": {
     "guzzlehttp/guzzle": "^7.8",
-	"predis/predis": "^3.4"
+    "predis/predis": "^2.2"
+  },
+  "autoload": {
+    "classmap": ["./"]
   }
 }
